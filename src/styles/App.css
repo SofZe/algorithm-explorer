@@ -772,7 +772,7 @@ main {
 
 .search-array-container,
 .search-visualization {
-  min-height: 300px;
+  min-height: 180px;
   overflow: visible;
 }
 
