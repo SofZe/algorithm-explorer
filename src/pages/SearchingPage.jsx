@@ -226,65 +226,6 @@ function SearchingPage() {
         algorithms step by step.
       </p>
 
-      <div className="controls controls-column">
-        <div className="control-row">
-          <div className="algorithm-label">
-            Binary Search
-          </div>
-
-          <button
-            onClick={runBinarySearch}
-          >
-            Start Search
-          </button>
-
-          <button onClick={togglePause}>
-            {isPaused
-              ? "Resume"
-              : "Pause"}
-          </button>
-
-          <button
-            onClick={generateSortedArray}
-          >
-            Random Array
-          </button>
-
-          <button onClick={resetArray}>
-            Reset
-          </button>
-        </div>
-
-        <div className="control-row">
-          <input
-            className="target-input"
-            type="number"
-            value={target}
-            onChange={(e) =>
-              setTarget(e.target.value)
-            }
-          />
-
-          <div className="speed-control">
-            <label>
-              Speed: {speed}%
-            </label>
-
-            <input
-              type="range"
-              min="0"
-              max="100"
-              step="1"
-              value={speed}
-              onChange={(e) =>
-                setSpeed(
-                  Number(e.target.value)
-                )
-              }
-            />
-          </div>
-        </div>
-      </div>
 
       <div className="dashboard">
         <div className="info-card">
@@ -386,6 +327,67 @@ function SearchingPage() {
         </div>
       </div>
 
+      
+      <div className="controls controls-column">
+        <div className="control-row">
+          <div className="algorithm-label">
+            Binary Search
+          </div>
+
+          <button
+            onClick={runBinarySearch}
+          >
+            Start Search
+          </button>
+
+          <button onClick={togglePause}>
+            {isPaused
+              ? "Resume"
+              : "Pause"}
+          </button>
+
+          <button
+            onClick={generateSortedArray}
+          >
+            Random Array
+          </button>
+
+          <button onClick={resetArray}>
+            Reset
+          </button>
+        </div>
+
+        <div className="control-row">
+          <input
+            className="target-input"
+            type="number"
+            value={target}
+            onChange={(e) =>
+              setTarget(e.target.value)
+            }
+          />
+
+          <div className="speed-control">
+            <label>
+              Speed: {speed}%
+            </label>
+
+            <input
+              type="range"
+              min="0"
+              max="100"
+              step="1"
+              value={speed}
+              onChange={(e) =>
+                setSpeed(
+                  Number(e.target.value)
+                )
+              }
+            />
+          </div>
+        </div>
+      </div>
+      
       <div className="search-array-container">
         {array.map((value, index) => {
           let boxClass = "search-box";
