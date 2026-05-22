@@ -753,7 +753,7 @@ main {
 }
 
 .visualization-area {
-  margin-top: 44px;
+  margin-top: 48px;
   overflow: visible;
 }
 
@@ -801,7 +801,7 @@ main {
 }
 
 .visualization-area {
-  margin-top: 44px;
+  margin-top: 48px;
 }
 
 /* theory-card */
@@ -1097,9 +1097,12 @@ main {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: 14px;
-
+  gap: 10px;
   flex-wrap: wrap;
+}
+
+.search-array-container.visualization-area {
+  margin-top: 8px;
 }
 
 .search-box {
@@ -1371,7 +1374,7 @@ main {
 
 @media (max-width: 480px) {
   .visualization-area {
-    margin-top: 44px;
+    margin-top: 48px;
   }
 
   .bars-container {
@@ -1385,6 +1388,9 @@ main {
 
   .search-array-container,
   .search-visualization {
-    min-height: 340px;
+    min-height: 220px;
   }
 }
+
+
+
