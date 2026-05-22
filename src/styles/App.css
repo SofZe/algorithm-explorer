@@ -446,19 +446,6 @@ main {
   margin-top: 14px;
 }
 
-/* Container for sorting bars */
-.bars-container {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 16px;
-
-  margin-top: 40px;
-  height: 430px;
-  min-height: 430px;
-  overflow: visible;
-}
-
 /* Wrapper for each bar */
 .bar-wrapper {
   height: 100%;
@@ -765,6 +752,31 @@ main {
   transform: translateY(-1px);
 }
 
+.visualization-area {
+  margin-top: 64px;
+  padding-top: 18px;
+  overflow: visible;
+}
+
+.bars-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  gap: 12px;
+
+  height: 540px;
+  min-height: 540px;
+
+  overflow: visible;
+}
+
+.search-array-container,
+.search-visualization {
+  min-height: 300px;
+  overflow: visible;
+}
+
 /* Responsive styles for smaller screens */
 @media (max-width: 768px) {
 
@@ -787,6 +799,11 @@ main {
 .user-pill {
   width: 100%;
   text-align: center;
+}
+
+.visualization-area {
+  margin-top: 70px;
+  padding-top: 20px;
 }
 
 /* theory-card */
@@ -1084,7 +1101,6 @@ main {
   align-items: flex-end;
   gap: 14px;
 
-  margin-top: 40px;
   flex-wrap: wrap;
 }
 
@@ -1291,14 +1307,15 @@ main {
     gap: 14px;
   }
 
-  .bars-container {
-    width: 100%;
-    overflow-x: auto;
-    justify-content: flex-start;
-    padding: 0 8px;
-    height: 360px;
-    min-height: 360px;
-  }
+.bars-container {
+  width: 100%;
+  overflow-x: auto;
+  justify-content: flex-start;
+  padding: 0 8px;
+  height: 540px;
+  min-height: 540px;
+  gap: 12px;
+}
 
   .array-bar {
     width: 38px;
@@ -1350,5 +1367,28 @@ main {
   .app-footer {
     width: calc(100% - 24px);
     font-size: 0.75rem;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .visualization-area {
+    margin-top: 70px;
+    padding-top: 20px;
+  }
+
+  .bars-container {
+    height: 580px;
+    min-height: 580px;
+    gap: 8px;
+  }
+
+  .array-bar {
+    width: 34px;
+  }
+
+  .search-array-container,
+  .search-visualization {
+    min-height: 340px;
   }
 }
