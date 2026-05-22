@@ -58,7 +58,7 @@ main {
 
 .app-footer {
   width: min(1000px, calc(100% - 48px));
-  margin: 40px auto 0;
+  margin: 32px auto 0;
   padding: 16px 20px;
 
   display: flex;
@@ -789,6 +789,14 @@ main {
   text-align: center;
 }
 
+.app-footer {
+  width: calc(100% - 24px);
+  margin: 28px auto 0;
+  font-size: 0.75rem;
+  flex-direction: column;
+  text-align: center;
+}
+
 .nav-actions {
   justify-self: center;
   flex-direction: column;
@@ -846,9 +854,6 @@ main {
   white-space: nowrap;
   font-size: 0.78rem;
   padding: 8px 12px;
-  overflow-y: hidden;
-  flex-wrap: nowrap;
-  scrollbar-width: thin;
 }
 
 /* Full width user pill on mobile */
@@ -1384,10 +1389,13 @@ main {
     grid-template-columns: 1fr;
   }
 
-  .app-footer {
-    width: calc(100% - 24px);
-    font-size: 0.75rem;
-  }
+.app-footer {
+  width: calc(100% - 24px);
+  margin: 28px auto 0;
+  font-size: 0.75rem;
+  flex-direction: column;
+  text-align: center;
+}
 }
 
 
