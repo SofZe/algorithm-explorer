@@ -273,46 +273,6 @@ useEffect(() => {
       <h2>Pathfinding Algorithms</h2>
       <p>Select and visualize pathfinding algorithms step by step.</p>
 
-      <div className="controls controls-column">
-      <div className="control-row">
-        <select
-          value={selectedAlgorithm}
-          onChange={(e) => {
-            resetState();
-            setSelectedAlgorithm(e.target.value);
-          }}
-        >
-          <option value="bfs">Breadth First Search</option>
-          <option value="astar">A* Search</option>
-        </select>
-
-        <button onClick={runAlgorithm}>Start Algorithm</button>
-
-        <button onClick={togglePause}>
-          {isPaused ? "Resume" : "Pause"}
-        </button>
-
-        <button onClick={resetGrid}>Reset Grid</button>
-      </div>
-
-      <div className="control-row">
-        <div className="speed-control">
-          <label>Speed: {speed}%</label>
-
-          <input
-            type="range"
-            min="0"
-            max="100"
-            step="1"
-            value={speed}
-            onChange={(e) =>
-              setSpeed(Number(e.target.value))
-            }
-          />
-        </div>
-      </div>
-    </div>
-
       <div className="dashboard">
         <div className="info-card">
           <h3>
@@ -327,6 +287,7 @@ useEffect(() => {
               : "A* Search uses a heuristic to estimate the distance to the target and prioritizes the most promising nodes first."}
           </p>
 
+          
           <div className="complexity-grid">
             <span>
               Time:{" "}
@@ -376,7 +337,47 @@ useEffect(() => {
         </div>
       </div>
 
-      <div className="grid-container">
+
+      
+<div className="controls controls-column">
+  <div className="control-row">
+    <select
+      value={selectedAlgorithm}
+      onChange={(e) => {
+        resetState();
+        setSelectedAlgorithm(e.target.value);
+      }}
+    >
+      <option value="bfs">Breadth First Search</option>
+      <option value="astar">A* Search</option>
+    </select>
+
+    <button onClick={runAlgorithm}>Start Algorithm</button>
+
+    <button onClick={togglePause}>
+      {isPaused ? "Resume" : "Pause"}
+    </button>
+
+    <button onClick={resetGrid}>Reset Grid</button>
+  </div>
+
+  <div className="control-row">
+    <div className="speed-control">
+      <label>Speed: {speed}%</label>
+
+      <input
+        type="range"
+        min="0"
+        max="100"
+        step="1"
+        value={speed}
+        onChange={(e) => setSpeed(Number(e.target.value))}
+      />
+    </div>
+  </div>
+</div>
+      
+      <div className="grid-container visualization-area">
         {Array.from({ length: rows * cols }).map((_, index) => {
           let cellClass = "grid-cell";
 
