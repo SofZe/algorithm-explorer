@@ -387,7 +387,7 @@ function SearchingPage() {
           </div>
         </div>
       </div>
-      
+
       <div className="search-array-container visualization-area">
         {array.map((value, index) => {
           let boxClass = "search-box";
