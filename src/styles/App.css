@@ -1337,8 +1337,8 @@ main {
   overflow-x: auto;
   justify-content: flex-start;
   padding: 0 8px;
-  height: 540px;
-  min-height: 540px;
+  height: 420px;
+  min-height: 420px;
   gap: 12px;
 }
 
