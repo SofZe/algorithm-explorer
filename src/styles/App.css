@@ -808,38 +808,57 @@ main {
 .theory-card-center {
   grid-column: auto;
 }
+/* Navbar on mobile */
+.top-navbar {
+  grid-template-columns: 1fr;
+  align-items: center;
+  text-align: center;
+  padding: 14px 12px;
+  gap: 12px;
+}
 
+/* Center navbar items on mobile */
+.brand,
+.nav-buttons,
+.user-pill {
+  justify-self: center;
+}
 
-  /* Navbar on mobile */
-  .top-navbar {
-    grid-template-columns: 1fr;
-    align-items: stretch;
-    text-align: center;
-  }
+/* Scrollable nav buttons on mobile */
+.nav-buttons {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
 
-  /* Center navbar items on mobile */
-  .brand,
-  .nav-buttons,
-  .user-pill {
-    justify-self: center;
-  }
+  justify-content: flex-start;
+  flex-wrap: nowrap;
 
-  /* Full width nav buttons container */
-  .nav-buttons {
-    width: 100%;
-  }
+  border-radius: 18px;
+  padding: 8px;
 
-  /* Make nav buttons equal width */
-  .nav-buttons button {
-    flex: 1;
-  }
+  scrollbar-width: thin;
+}
 
-  /* Full width user pill on mobile */
-  .user-pill {
-    width: 100%;
-    text-align: center;
-  }
+/* Keep nav buttons stable on mobile */
+.nav-buttons button {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-size: 0.78rem;
+  padding: 8px 12px;
+  overflow-y: hidden;
+  flex-wrap: nowrap;
+  scrollbar-width: thin;
+}
 
+/* Full width user pill on mobile */
+.user-pill {
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
   /* Dashboard becomes one column */
   .dashboard {
     grid-template-columns: 1fr;
@@ -1390,6 +1409,20 @@ main {
   .search-visualization {
     min-height: 220px;
   }
+}
+
+
+.nav-buttons::-webkit-scrollbar {
+  height: 6px;
+}
+
+.nav-buttons::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.45);
+  border-radius: 999px;
+}
+
+.nav-buttons::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 
