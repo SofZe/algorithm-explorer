@@ -208,7 +208,92 @@ function SortingPage() {
         by step.
       </p>
 
-      <div className="controls controls-column">
+
+
+      <div className="dashboard">
+        <div className="info-card">
+          <h3>{info.name}</h3>
+
+          <p>{info.description}</p>
+
+          <div className="complexity-grid">
+            <span>Best: {info.best}</span>
+
+            <span>
+              Average: {info.average}
+            </span>
+
+            <span>Worst: {info.worst}</span>
+          </div>
+        </div>
+
+        <div className="stats-card">
+          <div className="stats-header">
+            <h3>Live Statistics</h3>
+
+            <div
+              className="stats-help-wrapper"
+              ref={statsHelpRef}
+            >
+              <button
+                className="stats-help-button"
+                onClick={() =>
+                  setShowStatsHelp(
+                    !showStatsHelp
+                  )
+                }
+              >
+                ?
+              </button>
+
+              {showStatsHelp && (
+                <div className="stats-help-popup">
+                  <p>
+                    <strong>
+                      Comparisons:
+                    </strong>{" "}
+                    How many times the
+                    algorithm checks two
+                    values to see which one
+                    is bigger or smaller.
+                  </p>
+
+                  <p>
+                    <strong>Swaps/Writes:</strong>{" "}
+                    How many times two
+                    values change position
+                    or are written back
+                    in the array.
+                  </p>
+
+                  <p>
+                    <strong>
+                      Animation Steps:
+                    </strong>{" "}
+                    The total number of
+                    visual actions shown on
+                    screen, such as
+                    highlighting,
+                    comparing, or swapping
+                    bars.
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <p>
+            Comparisons: {stats.comparisons}
+          </p>
+
+          <p>Swaps/Writes: {stats.swaps}</p>
+
+          <p>
+            Animation Steps: {stats.steps}
+          </p>
+        </div>
+      </div>
+            <div className="controls controls-column">
         <div className="control-row">
           <select
             value={selectedAlgorithm}
@@ -297,91 +382,6 @@ function SortingPage() {
           </div>
         </div>
       </div>
-
-      <div className="dashboard">
-        <div className="info-card">
-          <h3>{info.name}</h3>
-
-          <p>{info.description}</p>
-
-          <div className="complexity-grid">
-            <span>Best: {info.best}</span>
-
-            <span>
-              Average: {info.average}
-            </span>
-
-            <span>Worst: {info.worst}</span>
-          </div>
-        </div>
-
-        <div className="stats-card">
-          <div className="stats-header">
-            <h3>Live Statistics</h3>
-
-            <div
-              className="stats-help-wrapper"
-              ref={statsHelpRef}
-            >
-              <button
-                className="stats-help-button"
-                onClick={() =>
-                  setShowStatsHelp(
-                    !showStatsHelp
-                  )
-                }
-              >
-                ?
-              </button>
-
-              {showStatsHelp && (
-                <div className="stats-help-popup">
-                  <p>
-                    <strong>
-                      Comparisons:
-                    </strong>{" "}
-                    How many times the
-                    algorithm checks two
-                    values to see which one
-                    is bigger or smaller.
-                  </p>
-
-                  <p>
-                    <strong>Swaps/Writes:</strong>{" "}
-                    How many times two
-                    values change position
-                    or are written back
-                    in the array.
-                  </p>
-
-                  <p>
-                    <strong>
-                      Animation Steps:
-                    </strong>{" "}
-                    The total number of
-                    visual actions shown on
-                    screen, such as
-                    highlighting,
-                    comparing, or swapping
-                    bars.
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-
-          <p>
-            Comparisons: {stats.comparisons}
-          </p>
-
-          <p>Swaps/Writes: {stats.swaps}</p>
-
-          <p>
-            Animation Steps: {stats.steps}
-          </p>
-        </div>
-      </div>
-
       <div className="bars-container">
         {array.map((value, index) => (
           <div
