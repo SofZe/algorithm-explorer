@@ -1371,8 +1371,7 @@ main {
 
 @media (max-width: 480px) {
   .visualization-area {
-    margin-top: 70px;
-    padding-top: 20px;
+    margin-top: 44px;
   }
 
   .bars-container {
