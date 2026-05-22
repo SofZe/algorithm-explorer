@@ -1375,9 +1375,8 @@ main {
   }
 
   .bars-container {
-    height: 580px;
-    min-height: 580px;
-    gap: 8px;
+    height: 380px;
+    min-height: 380px;
   }
 
   .array-bar {
