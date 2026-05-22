@@ -1193,3 +1193,162 @@ main {
   font-size: 0.95rem;
   font-weight: 600;
 }
+
+
+/* Better mobile responsiveness */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  main {
+    padding: 0 12px;
+  }
+
+  .top-navbar {
+    position: relative;
+    padding: 14px 12px;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .brand {
+    text-align: center;
+  }
+
+  .brand h1 {
+    font-size: 1.15rem;
+  }
+
+  .brand span {
+    font-size: 0.72rem;
+  }
+
+  .nav-buttons {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    justify-content: flex-start;
+    border-radius: 18px;
+    padding: 8px;
+  }
+
+  .nav-buttons button {
+    flex: 0 0 auto;
+    font-size: 0.78rem;
+    padding: 8px 12px;
+    white-space: nowrap;
+  }
+
+  .user-pill {
+    max-width: 100%;
+    font-size: 0.75rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .page-section {
+    width: 100%;
+    max-width: 100%;
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .page-section h2 {
+    font-size: 1.25rem;
+  }
+
+  .page-section p {
+    font-size: 0.9rem;
+  }
+
+  .controls {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 20px;
+  }
+
+  .control-row {
+    width: 100%;
+  }
+
+  .controls button,
+  .controls select,
+  .algorithm-label,
+  .target-input {
+    font-size: 0.78rem;
+    height: 38px;
+  }
+
+  .speed-control {
+    width: 100%;
+    min-width: 0;
+    max-width: 280px;
+  }
+
+  .dashboard {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .bars-container {
+    width: 100%;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 0 8px;
+    height: 360px;
+    min-height: 360px;
+  }
+
+  .array-bar {
+    width: 38px;
+  }
+
+  .search-array-container {
+    width: 100%;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding: 0 8px 8px;
+  }
+
+  .search-box {
+    width: 68px;
+    min-width: 68px;
+    height: 82px;
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(5, 42px);
+    gap: 6px;
+  }
+
+  .grid-cell {
+    width: 42px;
+    height: 42px;
+  }
+
+  .grid-legend {
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 0.78rem;
+  }
+
+  .theory-grid,
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .theory-card-center {
+    grid-column: auto;
+  }
+
+  .learning-points {
+    grid-template-columns: 1fr;
+  }
+
+  .app-footer {
+    width: calc(100% - 24px);
+    font-size: 0.75rem;
+  }
+}
