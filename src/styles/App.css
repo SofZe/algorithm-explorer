@@ -754,7 +754,6 @@ main {
 
 .visualization-area {
   margin-top: 64px;
-  padding-top: 18px;
   overflow: visible;
 }
 
@@ -803,7 +802,6 @@ main {
 
 .visualization-area {
   margin-top: 44px;
-  padding-top: 20px;
 }
 
 /* theory-card */
