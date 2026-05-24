@@ -170,6 +170,17 @@ function App() {
               </div>
 
               <div className="theory-card">
+                <h3>Linear Search</h3>
+              
+                <p>
+                  Linear Search checks each value one by one until the target value is found
+                  or the array ends.
+                </p>
+              
+                <span>Time: O(n), Space: O(1)</span>
+              </div>
+
+              <div className="theory-card">
                 <h3>Comparisons</h3>
                 <p>
                   A comparison happens when the algorithm checks two values to
@@ -183,6 +194,17 @@ function App() {
                   A swap happens when two values exchange positions in the
                   array.
                 </p>
+              </div>
+
+              <div className="theory-card">
+                <h3>Selection Sort</h3>
+              
+                <p>
+                  Selection Sort repeatedly finds the smallest value and places it into the
+                  correct position in the array.
+                </p>
+              
+                <span>Time: O(n²), Space: O(1)</span>
               </div>
 
               <div className="theory-card">
