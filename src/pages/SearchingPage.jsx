@@ -194,7 +194,7 @@ function SearchingPage() {
     );
   };
 
-  // Controls
+  {/* Controls */}
   const togglePause = () => {
     pauseRef.current =
       !pauseRef.current;
@@ -342,7 +342,7 @@ function SearchingPage() {
         </div>
       </div>
 
-      // Controls
+      {/* Controls */}
       <div className="controls controls-column">
         <div className="control-row">
           <div className="algorithm-label">
