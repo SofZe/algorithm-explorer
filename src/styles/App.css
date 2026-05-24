@@ -764,8 +764,8 @@ main {
 
   gap: 12px;
 
-  height: 380px;
-  min-height: 380px;
+  height: 400px;
+  min-height: 400px;
 
   overflow: visible;
 }
