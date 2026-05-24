@@ -60,7 +60,6 @@ function App() {
     );
   }
 
-
   // Main application UI
   return (
     <div className="app">
@@ -70,58 +69,55 @@ function App() {
           <span>Web-Based Algorithm Visualization System</span>
         </div>
 
-    <nav className="nav-buttons">
-      <button onClick={goHome}>
-        Home
-      </button>
+        <nav className="nav-buttons">
+          <button onClick={goHome}>
+            Home
+          </button>
 
-      <button
-        className={activePage === "sorting" ? "active" : ""}
-        onClick={() => setActivePage("sorting")}
-      >
-        Sorting
-      </button>
+          <button
+            className={activePage === "sorting" ? "active" : ""}
+            onClick={() => setActivePage("sorting")}
+          >
+            Sorting
+          </button>
 
+          <button
+            className={activePage === "searching" ? "active" : ""}
+            onClick={() => setActivePage("searching")}
+          >
+            Searching
+          </button>
 
-            <button
-        className={activePage === "searching" ? "active" : ""}
-        onClick={() => setActivePage("searching")}
-      >
-        Searching
-      </button>
+          <button
+            className={activePage === "pathfinding" ? "active" : ""}
+            onClick={() => setActivePage("pathfinding")}
+          >
+            Pathfinding
+          </button>
 
+          {/* Theory page */}
+          <button
+            className={activePage === "theory" ? "active" : ""}
+            onClick={() => setActivePage("theory")}
+          >
+            Theory
+          </button>
 
-      <button
-        className={activePage === "pathfinding" ? "active" : ""}
-        onClick={() => setActivePage("pathfinding")}
-      >
-        Pathfinding
-      </button>
+          <button
+            className={activePage === "canvas" ? "active" : ""}
+            onClick={() => setActivePage("canvas")}
+          >
+            Canvas
+          </button>
 
-      
-
-      // Theory page
-      <button
-        className={activePage === "theory" ? "active" : ""}
-        onClick={() => setActivePage("theory")}
-      >
-        Theory
-      </button>
-
-      <button
-        className={activePage === "canvas" ? "active" : ""}
-        onClick={() => setActivePage("canvas")}
-      >
-        Canvas
-      </button>
-// About page
-      <button
-        className={activePage === "about" ? "active" : ""}
-        onClick={() => setActivePage("about")}
-      >
-        About
-      </button>
-    </nav>
+          {/* About page */}
+          <button
+            className={activePage === "about" ? "active" : ""}
+            onClick={() => setActivePage("about")}
+          >
+            About
+          </button>
+        </nav>
 
         <div className="nav-actions">
           <div className="user-pill">
@@ -213,7 +209,7 @@ function App() {
           <section className="page-section about-section">
             <h2>About Algorithm Explorer</h2>
 
-            // Introduction comment
+            {/* Introduction comment */}
             <div className="about-intro">
               <p>
                 Algorithm Explorer is an interactive web-based learning tool designed to
@@ -221,7 +217,7 @@ function App() {
                 visualisation.
               </p>
 
-              // Main learning goals
+              {/* Main learning goals */}
               <div className="learning-points">
                 <span>Understand algorithm steps visually</span>
                 <span>Compare time and space complexity</span>
@@ -230,7 +226,7 @@ function App() {
               </div>
             </div>
 
-            // Feature cards
+            {/* Feature cards */}
             <div className="about-grid">
               <div className="about-card">
                 <h3>Sorting Visualizer</h3>
@@ -263,12 +259,9 @@ function App() {
                   by step.
                 </p>
               </div>
-
-
-            
             </div>
 
-            // Privacy message
+            {/* Privacy message */}
             <p>
               <i>
                 This application does not collect personal or sensitive data. The display
@@ -281,12 +274,12 @@ function App() {
         )}
       </main>
 
-        // Footer
-        <footer className="app-footer">
-          <span>Algorithm Explorer</span>
-          <span>Designed by 100723789 · Built for algorithm visualization and learning</span>
-        </footer>
-            </div>
+      {/* Footer */}
+      <footer className="app-footer">
+        <span>Algorithm Explorer</span>
+        <span>Designed by 100723789 · Built for algorithm visualization and learning</span>
+      </footer>
+    </div>
   );
 }
 
