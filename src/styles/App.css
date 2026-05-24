@@ -753,7 +753,7 @@ main {
 }
 
 .visualization-area {
-  margin-top: 48px;
+  margin-top: 54px;
   overflow: visible;
 }
 
@@ -809,7 +809,7 @@ main {
 }
 
 .visualization-area {
-  margin-top: 48px;
+  margin-top: 54px;
 }
 
 /* theory-card */
@@ -1401,7 +1401,7 @@ main {
 
 @media (max-width: 480px) {
   .visualization-area {
-    margin-top: 48px;
+    margin-top: 54px;
   }
 
   .bars-container {
