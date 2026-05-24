@@ -1,8 +1,11 @@
+// Imports
 import { useEffect, useRef, useState } from "react";
 import { generateBubbleSortSteps } from "../algorithms/sorting/bubbleSort";
 import { generateQuickSortSteps } from "../algorithms/sorting/quickSort";
 import { generateMergeSortSteps } from "../algorithms/sorting/mergeSort";
 
+// Algorithm information
+// Bubble sort
 const algorithmInfo = {
   bubble: {
     name: "Bubble Sort",
@@ -13,6 +16,7 @@ const algorithmInfo = {
     worst: "O(n²)",
   },
 
+  // Quick sort
   quick: {
     name: "Quick Sort",
     description:
@@ -22,6 +26,7 @@ const algorithmInfo = {
     worst: "O(n²)",
   },
 
+  // Merge sort
   merge: {
     name: "Merge Sort",
     description:
@@ -32,6 +37,7 @@ const algorithmInfo = {
   },
 };
 
+// Component
 function SortingPage() {
   const [selectedAlgorithm, setSelectedAlgorithm] =
     useState("bubble");
@@ -62,11 +68,13 @@ function SortingPage() {
   const stopRef = useRef(false);
   const statsHelpRef = useRef(null);
 
+  // Controls the delay between animation steps
   const delay = () =>
     new Promise((resolve) =>
       setTimeout(resolve, 1050 - speed * 10)
     );
 
+  // Keep the animation stopped while pause is active
   const waitIfPaused = async () => {
     while (pauseRef.current) {
       await new Promise((resolve) =>
@@ -75,6 +83,7 @@ function SortingPage() {
     }
   };
 
+  // Reset state
   const resetState = () => {
     stopRef.current = true;
     pauseRef.current = false;
@@ -90,9 +99,11 @@ function SortingPage() {
     });
   };
 
+  // Array controls
   const generateRandomArray = () => {
     resetState();
 
+    // Create a new random array based on the selected size
     const randomArray = Array.from(
       { length: arraySize },
       () => Math.floor(Math.random() * 10) + 1
@@ -107,6 +118,7 @@ function SortingPage() {
     setArray([5, 3, 8, 1, 2, 7]);
   };
 
+  // Run sorting algorithm
   const runAlgorithm = async () => {
     stopRef.current = false;
     pauseRef.current = false;
@@ -123,6 +135,7 @@ function SortingPage() {
 
     let steps = [];
 
+    // Choose which sorting algorithm to run
     if (selectedAlgorithm === "bubble") {
       steps = generateBubbleSortSteps(array);
     }
@@ -135,6 +148,7 @@ function SortingPage() {
       steps = generateMergeSortSteps(array);
     }
 
+    // Show each sorting step one by one
     for (const step of steps) {
       if (stopRef.current) return;
 
@@ -167,6 +181,7 @@ function SortingPage() {
     setActiveIndices([]);
   };
 
+  // Controls
   const togglePause = () => {
     pauseRef.current = !pauseRef.current;
     setIsPaused(pauseRef.current);
@@ -174,6 +189,7 @@ function SortingPage() {
 
   const info = algorithmInfo[selectedAlgorithm];
 
+  // Click outside popup
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -199,6 +215,7 @@ function SortingPage() {
     };
   }, []);
 
+  // JSX UI
   return (
     <section className="page-section">
       <h2>Sorting Algorithms</h2>
@@ -209,13 +226,14 @@ function SortingPage() {
       </p>
 
 
-
+      // Dashboard
       <div className="dashboard">
         <div className="info-card">
           <h3>{info.name}</h3>
 
           <p>{info.description}</p>
 
+          // Complexity grid
           <div className="complexity-grid">
             <span>Best: {info.best}</span>
 
@@ -227,6 +245,7 @@ function SortingPage() {
           </div>
         </div>
 
+        // Stats card
         <div className="stats-card">
           <div className="stats-header">
             <h3>Live Statistics</h3>
@@ -246,6 +265,7 @@ function SortingPage() {
                 ?
               </button>
 
+              // Show stats
               {showStatsHelp && (
                 <div className="stats-help-popup">
                   <p>
@@ -293,7 +313,9 @@ function SortingPage() {
           </p>
         </div>
       </div>
-            <div className="controls controls-column">
+
+      // Controls
+      <div className="controls controls-column">
         <div className="control-row">
           <select
             value={selectedAlgorithm}
@@ -317,6 +339,7 @@ function SortingPage() {
             </option>
           </select>
 
+          // Buttons
           <button onClick={runAlgorithm}>
             Start Algorithm
           </button>
@@ -368,6 +391,7 @@ function SortingPage() {
 
                 setArraySize(newSize);
 
+                // Create a new array when the size changes
                 const newArray = Array.from(
                   { length: newSize },
                   () =>
@@ -382,6 +406,8 @@ function SortingPage() {
           </div>
         </div>
       </div>
+
+      // Bar container
       <div className="bars-container">
         {array.map((value, index) => (
           <div
