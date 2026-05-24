@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { generateBubbleSortSteps } from "../algorithms/sorting/bubbleSort";
 import { generateQuickSortSteps } from "../algorithms/sorting/quickSort";
 import { generateMergeSortSteps } from "../algorithms/sorting/mergeSort";
+import { generateSelectionSortSteps } from "../algorithms/sorting/selectionSort";
 
 // Algorithm information
 // Bubble sort
@@ -35,7 +36,17 @@ const algorithmInfo = {
     average: "O(n log n)",
     worst: "O(n log n)",
   },
+
+    selection: {
+    name: "Selection Sort",
+    description:
+      "Selection Sort repeatedly finds the smallest value and places it in the correct position.",
+    best: "O(n²)",
+    average: "O(n²)",
+    worst: "O(n²)",
+  },
 };
+
 
 // Component
 function SortingPage() {
@@ -146,6 +157,10 @@ function SortingPage() {
 
     if (selectedAlgorithm === "merge") {
       steps = generateMergeSortSteps(array);
+    }
+
+    if (selectedAlgorithm === "selection") {
+      steps = generateSelectionSortSteps(array);
     }
 
     // Show each sorting step one by one
@@ -336,7 +351,13 @@ function SortingPage() {
             <option value="merge">
               Merge Sort
             </option>
+
+            <option value="selection">
+              Selection Sort
+            </option>
           </select>
+
+
 
           {/* Buttons */}
           <button onClick={runAlgorithm}>
