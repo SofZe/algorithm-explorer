@@ -923,7 +923,10 @@ main {
 }
 
 .theory-card-center {
-  grid-column: 2;
+  grid-column: 1 / -1;
+  max-width: 320px;
+  width: 100%;
+  justify-self: center;
 }
 
 
