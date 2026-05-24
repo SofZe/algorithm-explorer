@@ -225,15 +225,14 @@ function SortingPage() {
         by step.
       </p>
 
-
-      // Dashboard
+      {/* Dashboard */}
       <div className="dashboard">
         <div className="info-card">
           <h3>{info.name}</h3>
 
           <p>{info.description}</p>
 
-          // Complexity grid
+          {/* Complexity grid */}
           <div className="complexity-grid">
             <span>Best: {info.best}</span>
 
@@ -245,7 +244,7 @@ function SortingPage() {
           </div>
         </div>
 
-        // Stats card
+        {/* Stats card */}
         <div className="stats-card">
           <div className="stats-header">
             <h3>Live Statistics</h3>
@@ -265,7 +264,7 @@ function SortingPage() {
                 ?
               </button>
 
-              // Show stats
+              {/* Show stats */}
               {showStatsHelp && (
                 <div className="stats-help-popup">
                   <p>
@@ -314,7 +313,7 @@ function SortingPage() {
         </div>
       </div>
 
-      // Controls
+      {/* Controls */}
       <div className="controls controls-column">
         <div className="control-row">
           <select
@@ -339,7 +338,7 @@ function SortingPage() {
             </option>
           </select>
 
-          // Buttons
+          {/* Buttons */}
           <button onClick={runAlgorithm}>
             Start Algorithm
           </button>
@@ -407,7 +406,7 @@ function SortingPage() {
         </div>
       </div>
 
-      // Bar container
+      {/* Bar container */}
       <div className="bars-container">
         {array.map((value, index) => (
           <div
