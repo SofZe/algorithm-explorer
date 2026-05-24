@@ -1,5 +1,7 @@
+// Imports
 import { useEffect, useRef, useState } from "react";
 
+// Components
 function PathfindingPage() {
   const [selectedAlgorithm, setSelectedAlgorithm] = useState("bfs");
   const [visitedNodes, setVisitedNodes] = useState([]);
@@ -22,6 +24,7 @@ function PathfindingPage() {
   const startNode = 0;
   const targetNode = 24;
 
+  // Helper functions
   const delay = () =>
     new Promise((resolve) =>
       setTimeout(resolve, 1050 - speed * 10)
@@ -40,6 +43,7 @@ function PathfindingPage() {
     const row = Math.floor(node / cols);
     const col = node % cols;
 
+    // Add all valid neighboring cells
     if (row > 0) neighbors.push(node - cols);
     if (row < rows - 1) neighbors.push(node + cols);
     if (col > 0) neighbors.push(node - 1);
@@ -55,9 +59,11 @@ function PathfindingPage() {
     const rowB = Math.floor(nodeB / cols);
     const colB = nodeB % cols;
 
+    // Calculate distance without diagonal movement
     return Math.abs(rowA - rowB) + Math.abs(colA - colB);
   };
 
+  // Reset state
   const resetState = () => {
     stopRef.current = true;
     pauseRef.current = false;
@@ -73,6 +79,7 @@ function PathfindingPage() {
     });
   };
 
+  // Breadth First Search
   const runBFS = async () => {
     stopRef.current = false;
     pauseRef.current = false;
@@ -91,6 +98,7 @@ function PathfindingPage() {
     const visited = new Set([startNode]);
     const visitedOrder = [];
 
+    // Explore nodes level by level
     while (queue.length > 0) {
       const currentNode = queue.shift();
       visitedOrder.push(currentNode);
@@ -105,6 +113,7 @@ function PathfindingPage() {
       }
     }
 
+    // Animate the visited nodes
     for (let i = 0; i < visitedOrder.length; i++) {
       if (stopRef.current) return;
 
@@ -125,6 +134,7 @@ function PathfindingPage() {
     }
   };
 
+  // A star search
   const runAStar = async () => {
   stopRef.current = false;
   pauseRef.current = false;
@@ -146,6 +156,7 @@ function PathfindingPage() {
   const gScore = {};
   const fScore = {};
 
+  // Set defaults scores for every node
   for (let i = 0; i < rows * cols; i++) {
     gScore[i] = Infinity;
     fScore[i] = Infinity;
@@ -154,6 +165,7 @@ function PathfindingPage() {
   gScore[startNode] = 0;
   fScore[startNode] = getManhattanDistance(startNode, targetNode);
 
+  // Choose the node with the lowest estimated cost
   while (openSet.length > 0) {
     let currentNode = openSet[0];
 
@@ -187,6 +199,7 @@ function PathfindingPage() {
     }
   }
 
+  // Animate the visited nodes
   for (let i = 0; i < visitedOrder.length; i++) {
     if (stopRef.current) return;
 
@@ -209,6 +222,7 @@ function PathfindingPage() {
   const finalPath = [];
   let current = targetNode;
 
+  // Build the final path from target back to start
   while (current !== undefined) {
     finalPath.unshift(current);
 
@@ -217,6 +231,7 @@ function PathfindingPage() {
     current = cameFrom[current];
   }
 
+  // Animate the final path
   for (let i = 0; i < finalPath.length; i++) {
     if (stopRef.current) return;
 
@@ -232,6 +247,7 @@ function PathfindingPage() {
   }
 };
 
+  // Controls
   const runAlgorithm = () => {
     if (selectedAlgorithm === "bfs") {
       runBFS();
@@ -251,6 +267,7 @@ function PathfindingPage() {
     resetState();
   };
 
+// Click outside popup
 useEffect(() => {
   const handleClickOutside = (event) => {
     if (
@@ -268,6 +285,7 @@ useEffect(() => {
   };
 }, []);
 
+  // JSX UI
   return (
     <section className="page-section">
       <h2>Pathfinding Algorithms</h2>
@@ -287,7 +305,7 @@ useEffect(() => {
               : "A* Search uses a heuristic to estimate the distance to the target and prioritizes the most promising nodes first."}
           </p>
 
-          
+          // complexity grid
           <div className="complexity-grid">
             <span>
               Time:{" "}
@@ -300,10 +318,12 @@ useEffect(() => {
           </div>
         </div>
 
+        // Stats card
         <div className="stats-card">
           <div className="stats-header">
             <h3>Live Statistics</h3>
 
+            // Help wrapper
             <div className="stats-help-wrapper" ref={statsHelpRef}>
               <button
                 className="stats-help-button"
@@ -314,6 +334,7 @@ useEffect(() => {
                 ?
               </button>
 
+              // help messages
               {showStatsHelp && (
                 <div className="stats-help-popup">
                   <p>
@@ -338,7 +359,7 @@ useEffect(() => {
       </div>
 
 
-      
+// Controls
 <div className="controls controls-column">
   <div className="control-row">
     <select
@@ -352,6 +373,7 @@ useEffect(() => {
       <option value="astar">A* Search</option>
     </select>
 
+    // Button
     <button onClick={runAlgorithm}>Start Algorithm</button>
 
     <button onClick={togglePause}>
@@ -381,6 +403,7 @@ useEffect(() => {
         {Array.from({ length: rows * cols }).map((_, index) => {
           let cellClass = "grid-cell";
 
+      // Add CSS classes depending on the cell type
       if (visitedNodes.includes(index)) cellClass += " visited";
       if (pathNodes.includes(index)) cellClass += " path";
       if (index === startNode) cellClass += " start";
