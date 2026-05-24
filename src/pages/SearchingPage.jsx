@@ -1,5 +1,7 @@
+// Imports
 import { useEffect, useRef, useState } from "react";
 
+// Components
 function SearchingPage() {
   const [array, setArray] = useState([
     2, 5, 8, 12, 16, 23, 38, 45,
@@ -36,11 +38,13 @@ function SearchingPage() {
   const stopRef = useRef(false);
   const statsHelpRef = useRef(null);
 
+  // Controls the animation delay based on speed
   const delay = () =>
     new Promise((resolve) =>
       setTimeout(resolve, 1050 - speed * 10)
     );
 
+  // Keeps the animation waiting while it is paused
   const waitIfPaused = async () => {
     while (pauseRef.current) {
       await new Promise((resolve) =>
@@ -49,6 +53,7 @@ function SearchingPage() {
     }
   };
 
+  // Reset state
   const resetState = () => {
     stopRef.current = true;
     pauseRef.current = false;
@@ -71,9 +76,11 @@ function SearchingPage() {
     });
   };
 
+  // Array controls
   const generateSortedArray = () => {
     resetState();
 
+    // Create a new random sorted array
     const randomArray = Array.from(
       { length: 8 },
       () =>
@@ -99,6 +106,7 @@ function SearchingPage() {
     setTarget(23);
   };
 
+  // Binary search
   const runBinarySearch = async () => {
     stopRef.current = false;
     pauseRef.current = false;
@@ -119,6 +127,8 @@ function SearchingPage() {
     let right = array.length - 1;
 
     const searchTarget = Number(target);
+
+    // Keep searching while the range is valid
 
     while (left <= right) {
       if (stopRef.current) return;
@@ -142,6 +152,7 @@ function SearchingPage() {
         steps: prev.steps + 1,
       }));
 
+      // Decide which half of the array to search next
       if (array[middle] === searchTarget) {
         setStatus(
           `Target ${searchTarget} found at index ${middle}.`
@@ -183,6 +194,7 @@ function SearchingPage() {
     );
   };
 
+  // Controls
   const togglePause = () => {
     pauseRef.current =
       !pauseRef.current;
@@ -190,6 +202,7 @@ function SearchingPage() {
     setIsPaused(pauseRef.current);
   };
 
+  // Click outside popup
   useEffect(() => {
     const handleClickOutside = (
       event
@@ -217,6 +230,7 @@ function SearchingPage() {
     };
   }, []);
 
+  // JSX UI
   return (
     <section className="page-section">
       <h2>Searching Algorithms</h2>
@@ -273,6 +287,7 @@ function SearchingPage() {
                 ?
               </button>
 
+              // Helpers
               {showStatsHelp && (
                 <div className="stats-help-popup">
                   <p>
@@ -327,7 +342,7 @@ function SearchingPage() {
         </div>
       </div>
 
-      
+      // Controls
       <div className="controls controls-column">
         <div className="control-row">
           <div className="algorithm-label">
@@ -400,6 +415,7 @@ function SearchingPage() {
             boxClass += " in-range";
           }
 
+          // Highlight the middle value
           if (index === activeIndex) {
             boxClass += " middle";
           }
