@@ -9,6 +9,9 @@ function SearchingPage() {
 
   const [target, setTarget] = useState(23);
 
+  const [selectedAlgorithm, setSelectedAlgorithm] =
+    useState("binary");
+
   const [speed, setSpeed] = useState(50);
 
   const [activeIndex, setActiveIndex] =
@@ -60,7 +63,6 @@ function SearchingPage() {
 
     setIsPaused(false);
     setShowStatsHelp(false);
-
     setActiveIndex(null);
 
     setRange({
@@ -113,9 +115,7 @@ function SearchingPage() {
 
     setIsPaused(false);
     setShowStatsHelp(false);
-
     setActiveIndex(null);
-
     setStatus("Searching...");
 
     setStats({
@@ -129,7 +129,6 @@ function SearchingPage() {
     const searchTarget = Number(target);
 
     // Keep searching while the range is valid
-
     while (left <= right) {
       if (stopRef.current) return;
 
@@ -142,13 +141,10 @@ function SearchingPage() {
       );
 
       setRange({ left, right });
-
       setActiveIndex(middle);
 
       setStats((prev) => ({
-        comparisons:
-          prev.comparisons + 1,
-
+        comparisons: prev.comparisons + 1,
         steps: prev.steps + 1,
       }));
 
@@ -194,7 +190,64 @@ function SearchingPage() {
     );
   };
 
-  {/* Controls */}
+  // Linear search
+  const runLinearSearch = async () => {
+    stopRef.current = false;
+    pauseRef.current = false;
+
+    setIsPaused(false);
+    setShowStatsHelp(false);
+    setActiveIndex(null);
+
+    setRange({
+      left: null,
+      right: null,
+    });
+
+    setStatus("Searching...");
+
+    setStats({
+      comparisons: 0,
+      steps: 0,
+    });
+
+    const searchTarget = Number(target);
+
+    for (let i = 0; i < array.length; i++) {
+      if (stopRef.current) return;
+
+      await waitIfPaused();
+
+      if (stopRef.current) return;
+
+      setActiveIndex(i);
+
+      setStats((prev) => ({
+        comparisons: prev.comparisons + 1,
+        steps: prev.steps + 1,
+      }));
+
+      if (array[i] === searchTarget) {
+        setStatus(
+          `Target ${searchTarget} found at index ${i}.`
+        );
+
+        await delay();
+
+        return;
+      }
+
+      await delay();
+    }
+
+    setActiveIndex(null);
+
+    setStatus(
+      `Target ${searchTarget} was not found.`
+    );
+  };
+
+  // Controls
   const togglePause = () => {
     pauseRef.current =
       !pauseRef.current;
@@ -240,31 +293,36 @@ function SearchingPage() {
         algorithms step by step.
       </p>
 
-
       <div className="dashboard">
         <div className="info-card">
-          <h3>Binary Search</h3>
+          <h3>
+            {selectedAlgorithm === "binary"
+              ? "Binary Search"
+              : "Linear Search"}
+          </h3>
 
           <p>
-            Binary Search works on a
-            sorted array. It repeatedly
-            checks the middle value and
-            removes half of the remaining
-            search range.
+            {selectedAlgorithm === "binary"
+              ? "Binary Search works on a sorted array. It repeatedly checks the middle value and removes half of the remaining search range."
+              : "Linear Search checks each value one by one until the target value is found."}
           </p>
 
           <div className="complexity-grid">
-            <span>Best: O(1)</span>
-
-            <span>
-              Average: O(log n)
-            </span>
-
-            <span>
-              Worst: O(log n)
-            </span>
-
-            <span>Space: O(1)</span>
+            {selectedAlgorithm === "binary" ? (
+              <>
+                <span>Best: O(1)</span>
+                <span>Average: O(log n)</span>
+                <span>Worst: O(log n)</span>
+                <span>Space: O(1)</span>
+              </>
+            ) : (
+              <>
+                <span>Best: O(1)</span>
+                <span>Average: O(n)</span>
+                <span>Worst: O(n)</span>
+                <span>Space: O(1)</span>
+              </>
+            )}
           </div>
         </div>
 
@@ -296,7 +354,7 @@ function SearchingPage() {
                     </strong>{" "}
                     How many times the
                     algorithm checks the
-                    middle value against
+                    current value against
                     the target.
                   </p>
 
@@ -314,13 +372,7 @@ function SearchingPage() {
                       Status:
                     </strong>{" "}
                     Shows the current
-                    result of the search,
-                    including whether the
-                    target value was
-                    found, not found, or
-                    which side of the
-                    array is being
-                    searched next.
+                    result of the search.
                   </p>
                 </div>
               )}
@@ -345,12 +397,27 @@ function SearchingPage() {
       {/* Controls */}
       <div className="controls controls-column">
         <div className="control-row">
-          <div className="algorithm-label">
-            Binary Search
-          </div>
+          <select
+            value={selectedAlgorithm}
+            onChange={(e) => {
+              resetState();
+              setSelectedAlgorithm(e.target.value);
+            }}
+          >
+            <option value="binary">Binary Search</option>
+            <option value="linear">Linear Search</option>
+          </select>
 
           <button
-            onClick={runBinarySearch}
+            onClick={() => {
+              if (selectedAlgorithm === "binary") {
+                runBinarySearch();
+              }
+
+              if (selectedAlgorithm === "linear") {
+                runLinearSearch();
+              }
+            }}
           >
             Start Search
           </button>
@@ -408,6 +475,7 @@ function SearchingPage() {
           let boxClass = "search-box";
 
           if (
+            selectedAlgorithm === "binary" &&
             range.left !== null &&
             index >= range.left &&
             index <= range.right
@@ -415,7 +483,7 @@ function SearchingPage() {
             boxClass += " in-range";
           }
 
-          // Highlight the middle value
+          // Highlight the current checked value
           if (index === activeIndex) {
             boxClass += " middle";
           }
@@ -448,7 +516,7 @@ function SearchingPage() {
 
         <span>
           <b className="legend-box target"></b>
-          Middle Value
+          Current Value
         </span>
       </div>
     </section>
