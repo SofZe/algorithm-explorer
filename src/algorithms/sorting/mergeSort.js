@@ -2,23 +2,29 @@ export function generateMergeSortSteps(inputArray) {
   const arr = [...inputArray];
   const steps = [];
 
+  // Start the Merge Sort process
   mergeSort(arr, 0, arr.length - 1, steps);
 
   return steps;
 }
 
 function mergeSort(arr, left, right, steps) {
+  // Stop when the array is split into single elements
   if (left >= right) return;
 
   const middle = Math.floor((left + right) / 2);
 
+  // Split the array into two halves
   mergeSort(arr, left, middle, steps);
   mergeSort(arr, middle + 1, right, steps);
 
+  // Merge the sorted halves together
   merge(arr, left, middle, right, steps);
 }
 
 function merge(arr, left, middle, right, steps) {
+
+  // Create temporary arrays for the left and right side
   const leftArray = arr.slice(left, middle + 1);
   const rightArray = arr.slice(middle + 1, right + 1);
 
@@ -26,6 +32,7 @@ function merge(arr, left, middle, right, steps) {
   let j = 0;
   let k = left;
 
+  // Compare elements from both arrays and place the smaller one
   while (i < leftArray.length && j < rightArray.length) {
     steps.push({
       type: "compare",
@@ -41,6 +48,7 @@ function merge(arr, left, middle, right, steps) {
       j++;
     }
 
+    // Save the updated array state
     steps.push({
       type: "overwrite",
       indices: [k],
@@ -50,6 +58,7 @@ function merge(arr, left, middle, right, steps) {
     k++;
   }
 
+  // Add remaining elements from the left array
   while (i < leftArray.length) {
     arr[k] = leftArray[i];
 
@@ -63,6 +72,7 @@ function merge(arr, left, middle, right, steps) {
     k++;
   }
 
+  // Add remaining elements from the right array
   while (j < rightArray.length) {
     arr[k] = rightArray[j];
 
