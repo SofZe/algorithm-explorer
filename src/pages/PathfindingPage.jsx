@@ -247,7 +247,7 @@ function PathfindingPage() {
   }
 };
 
-  // Controls
+  {/* Controls */}
   const runAlgorithm = () => {
     if (selectedAlgorithm === "bfs") {
       runBFS();
@@ -305,7 +305,7 @@ useEffect(() => {
               : "A* Search uses a heuristic to estimate the distance to the target and prioritizes the most promising nodes first."}
           </p>
 
-          // complexity grid
+          {/* complexity grid */}
           <div className="complexity-grid">
             <span>
               Time:{" "}
@@ -318,12 +318,12 @@ useEffect(() => {
           </div>
         </div>
 
-        // Stats card
+        {/* Stats card */}
         <div className="stats-card">
           <div className="stats-header">
             <h3>Live Statistics</h3>
 
-            // Help wrapper
+            {/* Help wrapper */}
             <div className="stats-help-wrapper" ref={statsHelpRef}>
               <button
                 className="stats-help-button"
@@ -334,7 +334,7 @@ useEffect(() => {
                 ?
               </button>
 
-              // help messages
+              {/* help messages */}
               {showStatsHelp && (
                 <div className="stats-help-popup">
                   <p>
@@ -359,7 +359,7 @@ useEffect(() => {
       </div>
 
 
-// Controls
+{/* Controls */}
 <div className="controls controls-column">
   <div className="control-row">
     <select
@@ -373,7 +373,7 @@ useEffect(() => {
       <option value="astar">A* Search</option>
     </select>
 
-    // Button
+    {/* Button */}
     <button onClick={runAlgorithm}>Start Algorithm</button>
 
     <button onClick={togglePause}>
