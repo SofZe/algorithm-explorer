@@ -5,12 +5,12 @@ function HomePage({ onEnter }) {
       <div className="overlay">
         <h1>Algorithm Explorer</h1>
 
-        // Description
+        {/* Description */}
         <p>
           Interactive Web-Based Algorithm Visualization System
         </p>
 
-        // button to enter the application
+        {/* Button to enter the application */}
         <button onClick={onEnter}>
           Enter Explorer
         </button>
