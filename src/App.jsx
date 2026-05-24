@@ -1,3 +1,4 @@
+// Imports
 import { useEffect, useState } from "react";
 import SortingPage from "./pages/SortingPage";
 import PathfindingPage from "./pages/PathfindingPage";
@@ -7,19 +8,24 @@ import SearchingPage from "./pages/SearchingPage";
 import CanvasPage from "./pages/CanvasPage";
 import "./styles/App.css";
 
+// Components
 function App() {
+  // Saves which screen the user is currently on
   const [screen, setScreen] = useState(() => {
     return localStorage.getItem("screen") || "home";
   });
 
+  // Saves which page is active inside the main app
   const [activePage, setActivePage] = useState(() => {
     return localStorage.getItem("activePage") || "sorting";
   });
 
+  // Saves the local display name
   const [username, setUsername] = useState(() => {
     return localStorage.getItem("username") || "";
   });
 
+  // Local storage
   useEffect(() => {
     localStorage.setItem("screen", screen);
   }, [screen]);
@@ -32,6 +38,7 @@ function App() {
     localStorage.setItem("username", username);
   }, [username]);
 
+  // Navigation
   const goHome = () => {
     setScreen("home");
     setActivePage("sorting");
@@ -53,6 +60,8 @@ function App() {
     );
   }
 
+
+  // Main application UI
   return (
     <div className="app">
       <header className="top-navbar">
@@ -91,6 +100,7 @@ function App() {
 
       
 
+      // Theory page
       <button
         className={activePage === "theory" ? "active" : ""}
         onClick={() => setActivePage("theory")}
@@ -104,7 +114,7 @@ function App() {
       >
         Canvas
       </button>
-
+// About page
       <button
         className={activePage === "about" ? "active" : ""}
         onClick={() => setActivePage("about")}
@@ -203,6 +213,7 @@ function App() {
           <section className="page-section about-section">
             <h2>About Algorithm Explorer</h2>
 
+            // Introduction comment
             <div className="about-intro">
               <p>
                 Algorithm Explorer is an interactive web-based learning tool designed to
@@ -210,6 +221,7 @@ function App() {
                 visualisation.
               </p>
 
+              // Main learning goals
               <div className="learning-points">
                 <span>Understand algorithm steps visually</span>
                 <span>Compare time and space complexity</span>
@@ -218,6 +230,7 @@ function App() {
               </div>
             </div>
 
+            // Feature cards
             <div className="about-grid">
               <div className="about-card">
                 <h3>Sorting Visualizer</h3>
@@ -252,8 +265,10 @@ function App() {
               </div>
 
 
-              
+            
             </div>
+
+            // Privacy message
             <p>
               <i>
                 This application does not collect personal or sensitive data. The display
@@ -266,6 +281,7 @@ function App() {
         )}
       </main>
 
+        // Footer
         <footer className="app-footer">
           <span>Algorithm Explorer</span>
           <span>Designed by 100723789 · Built for algorithm visualization and learning</span>
