@@ -30,10 +30,12 @@ function LoginPage({ onLogin }) {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
+
         <p className="privacy-note">
           This name is used only as a local display name and is stored in your browser.
           No personal or sensitive data is collected.
         </p>
+
         <button type="submit">Continue</button>
       </form>
     </div>
