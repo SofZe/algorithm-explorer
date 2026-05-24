@@ -287,7 +287,7 @@ function SearchingPage() {
                 ?
               </button>
 
-              // Helpers
+              {/* Helpers */}
               {showStatsHelp && (
                 <div className="stats-help-popup">
                   <p>
