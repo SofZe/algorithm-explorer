@@ -1,5 +1,7 @@
+// Imports
 import { useEffect, useRef, useState } from "react";
 
+// Components
 function CanvasPage() {
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
@@ -9,12 +11,14 @@ function CanvasPage() {
   const [currentStep, setCurrentStep] = useState(-1);
   const [isRunning, setIsRunning] = useState(false);
 
+  // Draw canvas
   const drawCanvas = (activeIndex = -1) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const ctx = canvas.getContext("2d");
 
+    // Clear the canvas before drawing again
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     ctx.fillStyle = "#0f172a";
@@ -24,6 +28,7 @@ function CanvasPage() {
     ctx.font = "18px Arial";
     ctx.fillText("Canvas-based Step-by-Step Visualization Demo", 24, 34);
 
+    // Draw each value as a bar on the canvas
     values.forEach((value, index) => {
       const x = 50 + index * 80;
       const barHeight = value * 3;
@@ -40,6 +45,7 @@ function CanvasPage() {
     ctx.fillStyle = "#cbd5e1";
     ctx.font = "14px Arial";
 
+    // Show text depending on the current step
     if (activeIndex >= 0) {
       ctx.fillText(
         `Step ${activeIndex + 1}: highlighting value ${values[activeIndex]}`,
@@ -58,6 +64,7 @@ function CanvasPage() {
       clearInterval(animationRef.current);
     }
 
+    // Move to the next bar manually
     setCurrentStep((prev) => {
       const next = prev + 1 >= values.length ? 0 : prev + 1;
       drawCanvas(next);
@@ -65,6 +72,7 @@ function CanvasPage() {
     });
   };
 
+  // Animation controls
   const startAnimation = () => {
     if (animationRef.current) {
       clearInterval(animationRef.current);
@@ -72,6 +80,7 @@ function CanvasPage() {
 
     setIsRunning(true);
 
+    // Automatically move through the steps
     animationRef.current = setInterval(() => {
       setCurrentStep((prev) => {
         const next = prev + 1;
@@ -92,6 +101,7 @@ function CanvasPage() {
   const pauseAnimation = () => {
     setIsRunning(false);
 
+    // Stop the automatic animation
     if (animationRef.current) {
       clearInterval(animationRef.current);
     }
@@ -105,10 +115,13 @@ function CanvasPage() {
       clearInterval(animationRef.current);
     }
 
+    // Return the canvas to the starting state
     drawCanvas(-1);
   };
 
   useEffect(() => {
+
+    // Draw the first empty state when the page loads
     drawCanvas(-1);
 
     return () => {
