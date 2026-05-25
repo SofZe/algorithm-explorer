@@ -14,15 +14,16 @@ function PathfindingPage() {
     visited: 0,
     steps: 0,
   });
-
   const stopRef = useRef(false);
   const pauseRef = useRef(false);
   const statsHelpRef = useRef(null);
 
-  const rows = 5;
-  const cols = 5;
-  const startNode = 0;
-  const targetNode = 24;
+const rows = 5;
+const cols = 5;
+const startNode = 0;
+const targetNode = 24;
+
+const obstacleNodes = [6, 7, 8, 11, 16, 17, 18];
 
   // Helper functions
   const delay = () =>
@@ -49,9 +50,12 @@ function PathfindingPage() {
     if (col > 0) neighbors.push(node - 1);
     if (col < cols - 1) neighbors.push(node + 1);
 
-    return neighbors;
-  };
+    return neighbors.filter(
+      (neighbor) => !obstacleNodes.includes(neighbor)
+);
 
+
+  };
   const getManhattanDistance = (nodeA, nodeB) => {
     const rowA = Math.floor(nodeA / cols);
     const colA = nodeA % cols;
@@ -61,8 +65,8 @@ function PathfindingPage() {
 
     // Calculate distance without diagonal movement
     return Math.abs(rowA - rowB) + Math.abs(colA - colB);
-  };
 
+  };
   // Reset state
   const resetState = () => {
     stopRef.current = true;
@@ -136,6 +140,9 @@ function PathfindingPage() {
 
   // A star search
   const runAStar = async () => {
+  const openSet = [startNode];
+  const closedSet = new Set();
+  const visitedOrder = [];
   stopRef.current = false;
   pauseRef.current = false;
 
@@ -149,8 +156,6 @@ function PathfindingPage() {
     steps: 0,
   });
 
-  const openSet = [startNode];
-  const visitedOrder = [];
 
   const cameFrom = {};
   const gScore = {};
@@ -182,8 +187,10 @@ function PathfindingPage() {
     }
 
     openSet.splice(openSet.indexOf(currentNode), 1);
+    closedSet.add(currentNode);
 
     for (const neighbor of getNeighbors(currentNode)) {
+      if (closedSet.has(neighbor)) continue;
       const tentativeGScore = gScore[currentNode] + 1;
 
       if (tentativeGScore < gScore[neighbor]) {
@@ -404,6 +411,7 @@ useEffect(() => {
           let cellClass = "grid-cell";
 
       // Add CSS classes depending on the cell type
+      if (obstacleNodes.includes(index)) cellClass += " obstacle";
       if (visitedNodes.includes(index)) cellClass += " visited";
       if (pathNodes.includes(index)) cellClass += " path";
       if (index === startNode) cellClass += " start";
@@ -420,6 +428,10 @@ useEffect(() => {
 
         <span>
           <b className="legend-box target"></b> Target
+        </span>
+
+        <span>
+          <b className="legend-box obstacle"></b> Obstacle
         </span>
 
         <span>
