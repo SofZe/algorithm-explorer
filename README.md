@@ -19,7 +19,7 @@ https://github.com/SofZe/algorithm-explorer
 The application includes:
 
 - Sorting algorithm visualisations
-- Searching algorithm visualisation
+- Searching algorithm visualisations
 - Pathfinding algorithm visualisations
 - Theory page with basic algorithm terms
 - About page with project purpose and learning outcomes
@@ -30,6 +30,7 @@ The application includes:
 - Reset controls
 - Random input generation
 - Responsive design for smaller screens
+- Obstacle-based pathfinding grid
 
 ### 4. Algorithms Included
 
@@ -40,24 +41,27 @@ The sorting page includes:
 - Bubble Sort
 - Quick Sort
 - Merge Sort
+- Selection Sort
 
 Users can generate a random array, change the array size, start the animation, pause or resume it, reset it, and change the animation speed.
 
 The visualisation highlights active bars during comparisons, swaps, or array updates.
 
-#### 4.2 Searching Algorithm
+#### 4.2 Searching Algorithms
 
 The searching page includes:
 
 - Binary Search
+- Linear Search
 
-The Binary Search visualisation uses a sorted array.
+Linear Search checks each value one by one until the target value is found or the end of the array is reached. Binary Search uses a sorted array and repeatedly checks the middle value to reduce the search range.
 
 It highlights:
 
-- The current search range
-- The middle value being checked
-- Whether the target value was found or not found
+- Current search range
+- Current value or middle value
+- Target value
+- Found or not found status
 
 Users can enter a target value, generate a random sorted array, start the search, pause or resume, reset, and change the speed.
 
@@ -74,10 +78,11 @@ It highlights:
 
 - Start node
 - Target node
+- Obstacle cells
 - Visited nodes
 - Final path
 
-Users can select the algorithm, start it, pause or resume, reset the grid, and change the speed.
+Users can select the algorithm, start it, pause or resume, reset the grid, and change the speed. Obstacle cells are avoided by both Breadth First Search and A* Search during execution.
 
 #### 4.4 Canvas Demonstration
 
@@ -127,6 +132,7 @@ src/
       bubbleSort.js
       quickSort.js
       mergeSort.js
+      selectionSort.js
 
   styles/
     App.css
