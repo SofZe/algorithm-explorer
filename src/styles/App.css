@@ -1429,5 +1429,21 @@ main {
   background: transparent;
 }
 
+/* obstacle in pathfinding */
+.grid-cell.obstacle {
+  background: #334155;
+  border: 2px solid #cbd5e1;
+}
+
+.grid-cell.obstacle {
+  background: #475569;
+  border-color: #111827;
+}
+
+.legend-box.obstacle {
+  background: #475569;
+
+}
+
 
 
